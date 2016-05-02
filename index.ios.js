@@ -92,7 +92,8 @@ class chatSample extends React.Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
-          style={styles.listview}/>
+          style={styles.listview}
+          enableEmptySections={true}/>
         <ActionButton title="Add" onPress={this._addItem.bind(this)} />
       </View>
     );
