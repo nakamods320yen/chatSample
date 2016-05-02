@@ -29,11 +29,44 @@ class chatSample extends React.Component {
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
+    this.itemsRef = new Firebase("https://fiery-torch-404.firebaseio.com/items");
   }
+  listenForItems(itemsRef) {
+    itemsRef.on('value', (snap) => {
+      // get children as an array
+      var items = [];
+      snap.forEach((child) => {
+        items.push({
+          title: child.val().title,
+          _key: child.key()
+        });
+      });
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(items)
+      });
+    });
+  }
+
   componentDidMount() {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows([{ title: 'Pizza' }])
-    })
+    // this.setState({
+    //   dataSource: this.state.dataSource.cloneWithRows([{ title: 'Pizza' }])
+    // })
+    this.listenForItems(this.itemsRef);
+  }
+  _addItem() {
+    AlertIOS.alert(
+      'Add New Item',
+      null,
+      [
+        {
+          text: 'Add',
+          onPress: (text) => {
+            this.itemsRef.push({ title: text })
+          }
+        },
+      ],
+      'plain-text'
+    );
   }
   _renderItem(item) {
     return (
@@ -48,7 +81,7 @@ class chatSample extends React.Component {
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
           style={styles.listview}/>
-        <ActionButton title="Add" onPress={() => {}} />
+        <ActionButton title="Add" onPress={this._addItem.bind(this)} />
       </View>
     );
   }
