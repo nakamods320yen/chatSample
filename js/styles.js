@@ -28,6 +28,10 @@ var styles = StyleSheet.create({
     color: '#333',
     fontSize: 16,
   },
+  liPostTime: {
+    color: '#999',
+    fontSize: 10,
+  },
   navbar: {
     alignItems: 'center',
     backgroundColor: '#fff',
