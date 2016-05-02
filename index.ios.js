@@ -54,7 +54,7 @@ class chatSample extends React.Component {
     this.listenForItems(this.itemsRef);
   }
   _addItem() {
-    AlertIOS.alert(
+    AlertIOS.prompt(
       'Add New Item',
       null,
       [
@@ -70,7 +70,7 @@ class chatSample extends React.Component {
   }
   _renderItem(item) {
     const onPress = () => {
-      AlertIOS.alert(
+      AlertIOS.prompt(
         'Complete',
         null,
         [
