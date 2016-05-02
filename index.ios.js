@@ -38,6 +38,7 @@ class chatSample extends React.Component {
       snap.forEach((child) => {
         items.push({
           title: child.val().title,
+          post_time: child.val().post_time,
           _key: child.key()
         });
       });
@@ -61,7 +62,7 @@ class chatSample extends React.Component {
         {
           text: 'Add',
           onPress: (text) => {
-            this.itemsRef.push({ title: text })
+            this.itemsRef.push({ title: text, post_time: Firebase.ServerValue.TIMESTAMP })
           }
         },
       ],
