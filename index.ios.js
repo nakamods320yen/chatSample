@@ -86,6 +86,14 @@ class chatSample extends React.Component {
       <ListItem item={item} onPress={onPress} />
     );
   }
+  _onSubmitEditing(a, b) {
+    console.log('onSubmitEditing');
+    console.dir(this.tmpText);
+    this.itemsRef.push({ title: this.tmpText, post_time: Firebase.ServerValue.TIMESTAMP })
+  }
+  _onChangeText(text) {
+    this.tmpText = text;
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -95,7 +103,9 @@ class chatSample extends React.Component {
           renderRow={this._renderItem.bind(this)}
           style={styles.listview}
           enableEmptySections={true}/>
-        <TextField></TextField>
+        <TextField
+          onSubmitEditing={this._onSubmitEditing.bind(this)}
+          onChangeText={this._onChangeText.bind(this)}/>
       </View>
     );
     //<ActionButton title="Add" onPress={this._addItem.bind(this)} />
