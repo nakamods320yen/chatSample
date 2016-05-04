@@ -67,6 +67,14 @@ var styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
   },
+  textField: {
+    height: 80,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingLeft: 16,
+    paddingTop: 14,
+    paddingBottom: 16
+  },
 })
 
 module.exports = styles

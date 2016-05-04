@@ -18,6 +18,7 @@ const Firebase = require('firebase');
 const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
 const ListItem = require('./components/ListItem');
+const TextField = require('./components/TextField');
 const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
 const styles = require('./js/styles.js');
 
@@ -94,9 +95,10 @@ class chatSample extends React.Component {
           renderRow={this._renderItem.bind(this)}
           style={styles.listview}
           enableEmptySections={true}/>
-        <ActionButton title="Add" onPress={this._addItem.bind(this)} />
+        <TextField></TextField>
       </View>
     );
+    //<ActionButton title="Add" onPress={this._addItem.bind(this)} />
   }
 }
 
