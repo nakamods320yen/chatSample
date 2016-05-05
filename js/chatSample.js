@@ -1,19 +1,16 @@
 /**
  * Chat Sample
  * https://github.com/nakamods320yen/chatSample
+ * @flow
  */
+const React = require('react-native');
+const StatusBar = require('../components/StatusBar');
+const ActionButton = require('../components/ActionButton');
+const ListItem = require('../components/ListItem');
+const TextField = require('../components/TextField');
+const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
 
- const React = require('react-native');
-
- const Firebase = require('firebase');
- const StatusBar = require('./components/StatusBar');
- const ActionButton = require('./components/ActionButton');
- const ListItem = require('./components/ListItem');
- const TextField = require('./components/TextField');
- const { AppRegistry, StyleSheet, Text, View, ListView, Alert } = React;
- const styles = require('./js/styles.js');
-
- class chatSample extends React.Component {
+ class ChatSample extends React.Component {
    constructor(props) {
      super(props);
      this.state = {
@@ -46,9 +43,24 @@
      // })
      this.listenForItems(this.itemsRef);
    }
+   _addItem() {
+     AlertIOS.prompt(
+       'Add New Item',
+       null,
+       [
+         {
+           text: 'Add',
+           onPress: (text) => {
+             this.itemsRef.push({ title: text, post_time: Firebase.ServerValue.TIMESTAMP })
+           }
+         },
+       ],
+       'plain-text'
+     );
+   }
    _renderItem(item) {
      const onPress = () => {
-       Alert.alert(
+       AlertIOS.prompt(
          'Delete',
          null,
          [
@@ -84,7 +96,9 @@
            onChangeText={this._onChangeText.bind(this)}/>
        </View>
      );
+     //<ActionButton title="Add" onPress={this._addItem.bind(this)} />
    }
  }
 
- AppRegistry.registerComponent('chatSample', () => chatSample);
+ //AppRegistry.registerComponent('chatSample', () => chatSample);
+module.exports = ChatSample;

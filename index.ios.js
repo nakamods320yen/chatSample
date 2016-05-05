@@ -1,6 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Chat Sample
+ * https://github.com/nakamods320yen/chatSample
  * @flow
  */
 
