@@ -73,10 +73,10 @@ class chatSample extends React.Component {
   _renderItem(item) {
     const onPress = () => {
       AlertIOS.prompt(
-        'Complete',
+        'Delete',
         null,
         [
-          {text: 'Complete', onPress: (text) => this.itemsRef.child(item._key).remove()},
+          {text: 'Delete', onPress: (text) => this.itemsRef.child(item._key).remove()},
           {text: 'Cancel', onPress: (text) => console.log('Cancel')}
         ],
         'default'
