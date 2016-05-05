@@ -97,7 +97,7 @@ class chatSample extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar title="Grocery List" />
+        <StatusBar title="Chat Sample" />
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
