@@ -8,9 +8,10 @@ const StatusBar = require('../components/StatusBar');
 const ActionButton = require('../components/ActionButton');
 const ListItem = require('../components/ListItem');
 const TextField = require('../components/TextField');
+const styles = require('../js/styles.js');
 const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
 
- class ChatSample extends React.Component {
+ class ChatList extends React.Component {
    constructor(props) {
      super(props);
      this.state = {
@@ -101,4 +102,4 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
  }
 
  //AppRegistry.registerComponent('chatSample', () => chatSample);
-module.exports = ChatSample;
+module.exports = ChatList;
