@@ -13,6 +13,24 @@ const { ListView } = React;
 var { Provider } = require('react-redux');
 const ChatList = require('./ChatList');
 
+var {applyMiddleware, createStore} = require('redux');
+let store = createStore(todos, [ 'Use Redux' ])
+
+const initialState = { item: [] };
+
+export const todo = (state = initialState, action) {
+  switch(action.type) {
+    case 'TODO_ADD':
+      return {
+        items: state.items.concat(action.todo);
+      };
+    default:
+      return state;
+  }
+};
+export default connect(state => {
+  return { todo: state.todos.item };
+});
 
 function setup(): React.Component {
   class Root extends React.Component {
@@ -24,6 +42,7 @@ function setup(): React.Component {
         //   rowHasChanged: (row1, row2) => row1 !== row2,
         // })
         //store: configureStore(() => this.setState({isLoading: false})),
+        store: {}
       };
       //this.itemsRef = new Firebase("https://fiery-torch-404.firebaseio.com/items");
     }
@@ -33,7 +52,7 @@ function setup(): React.Component {
       // }
       //<Provider store={this.state.store}>
       return (
-        <Provider>
+        <Provider store={this.state.store}>
           <ChatList/>
         </Provider>
       );
