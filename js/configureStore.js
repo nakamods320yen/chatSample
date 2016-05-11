@@ -43,6 +43,9 @@ function configureStore(onComplete: ?() => void) {
     }
   };
   const store = createStore(counter);
+  store.subscribe(() =>
+    console.log(store.getState())
+  );
 
   if (isDebuggingInChrome) {
     window.store = store;
