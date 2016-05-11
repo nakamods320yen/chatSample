@@ -4,7 +4,7 @@ var { combineReducers } = require('redux');
 
 module.exports = combineReducers({
   todos: require('./todos'),
-  // config: require('./config'),
+  config: require('./config'),
   // notifications: require('./notifications'),
   // maps: require('./maps'),
   // sessions: require('./sessions'),

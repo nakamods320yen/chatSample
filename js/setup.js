@@ -29,7 +29,7 @@ function setup(): React.Component {
         //   rowHasChanged: (row1, row2) => row1 !== row2,
         // })
         store: configureStore(() => this.setState({isLoading: false})),
-        store: {}
+        // store: {}
       };
       //this.itemsRef = new Firebase("https://fiery-torch-404.firebaseio.com/items");
     }

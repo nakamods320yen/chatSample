@@ -6,7 +6,9 @@
 'use strict';
 
 var {applyMiddleware, createStore} = require('redux');
-var thunk = require('redux-thunk');
+// var thunk = require('redux-thunk');
+import thunk from 'redux-thunk';
+
 var promise = require('./promise');
 var array = require('./array');
 var analytics = require('./analytics');
@@ -28,15 +30,20 @@ var createCSStore = applyMiddleware(thunk, promise, array, analytics, logger)(cr
 
 function configureStore(onComplete: ?() => void) {
   // TODO(frantic): reconsider usage of redux-persist, maybe add cache breaker
-  // const store = autoRehydrate()(createCSStore)(reducers);
-  // persistStore(store, {storage: AsyncStorage}, onComplete);
+  const store = autoRehydrate()(createCSStore)(reducers);
+  // const store = createStore(
+  //   reducers,
+  //   undefined,
+  //   applyMiddleware(thunk, promise, array, analytics, logger)
+  // );
+  persistStore(store, {storage: AsyncStorage}, onComplete);
 
   // by the video
 
-  const store = createStore(reducers);
-  store.subscribe(() =>
-    console.log(store.getState())
-  );
+  // const store = createStore(reducers);
+  // store.subscribe(() =>
+  //   console.log(store.getState())
+  // );
 
   if (isDebuggingInChrome) {
     window.store = store;
