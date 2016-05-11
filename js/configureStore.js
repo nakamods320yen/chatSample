@@ -32,17 +32,8 @@ function configureStore(onComplete: ?() => void) {
   // persistStore(store, {storage: AsyncStorage}, onComplete);
 
   // by the video
-  const counter = (state = 0, action) => {
-    switch (action.type) {
-      case 'INCREMENT':
-        return state + 1;
-      case 'DECREMENT':
-        return state - 1;
-      default:
-        return state;
-    }
-  };
-  const store = createStore(counter);
+
+  const store = createStore(reducers);
   store.subscribe(() =>
     console.log(store.getState())
   );
