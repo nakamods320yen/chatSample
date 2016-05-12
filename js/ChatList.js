@@ -8,6 +8,11 @@ const StatusBar = require('../components/StatusBar');
 const ActionButton = require('../components/ActionButton');
 const ListItem = require('../components/ListItem');
 const TextField = require('../components/TextField');
+const LoginButtonFB = require('./login/LoginButtonFB');
+// const FBSDK = require('react-native-fbsdk');
+// const {
+//   LoginButton,
+// } = FBSDK;
 const styles = require('../js/styles.js');
 const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
 
@@ -87,6 +92,7 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
      return (
        <View style={styles.container}>
          <StatusBar title="Chat Sample" />
+         <LoginButtonFB />
          <ListView
            dataSource={this.state.dataSource}
            renderRow={this._renderItem.bind(this)}
