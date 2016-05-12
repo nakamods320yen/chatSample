@@ -9,6 +9,7 @@ const ActionButton = require('../components/ActionButton');
 const ListItem = require('../components/ListItem');
 const TextField = require('../components/TextField');
 const LoginButtonFB = require('./login/LoginButtonFB');
+var ProfilePicture = require('./common/ProfilePicture');
 // const FBSDK = require('react-native-fbsdk');
 // const {
 //   LoginButton,
@@ -93,6 +94,7 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
        <View style={styles.container}>
          <StatusBar title="Chat Sample" />
          <LoginButtonFB />
+         <ProfilePicture userID={this.props.userID} size={18} />
          <ListView
            dataSource={this.state.dataSource}
            renderRow={this._renderItem.bind(this)}

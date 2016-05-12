@@ -9,6 +9,7 @@ const React = require('react-native');
 const Firebase = require('firebase');
 const styles = require('./styles.js');
 const { ListView } = React;
+var FacebookSDK = require('./FacebookSDK');
 
 var { Provider } = require('react-redux');
 const ChatList = require('./ChatList');
@@ -20,6 +21,7 @@ var {applyMiddleware, createStore, connect} = require('redux');
 
 
 function setup(): React.Component {
+  FacebookSDK.init();
   class Root extends React.Component {
     constructor() {
       super();
