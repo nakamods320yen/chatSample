@@ -10,6 +10,8 @@ const ListItem = require('../components/ListItem');
 const TextField = require('../components/TextField');
 const LoginButtonFB = require('./login/LoginButtonFB');
 var ProfilePicture = require('./common/ProfilePicture');
+var FacebookSDK = require('./FacebookSDK');
+
 // const FBSDK = require('react-native-fbsdk');
 // const {
 //   LoginButton,
@@ -90,6 +92,7 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
      this.tmpText = text;
    }
    render() {
+     console.dir(FacebookSDK.getAuthResponse());
      return (
        <View style={styles.container}>
          <StatusBar title="Chat Sample" />
