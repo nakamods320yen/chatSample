@@ -35,7 +35,7 @@ new GraphRequestManager().addRequest(infoRequest).start();
 
 class LoginButtonFB extends React.Component {
   checkStatus() {
-    console.dir(AccessToken.getCurrentAccessToken());
+    AccessToken.getCurrentAccessToken().then((FBAccessToken) => console.dir(FBAccessToken));
   }
   render() {
     return (
