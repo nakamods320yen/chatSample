@@ -10,6 +10,7 @@ const {
   GraphRequest,
   GraphRequestManager,
   LoginButton,
+  AccessToken,
 } = FBSDK;
 
 // https://github.com/facebook/react-native-fbsdk
@@ -22,19 +23,20 @@ const {
 //   }
 // }
 
-// Start the graph request.
-//new GraphRequestManager().addRequest(infoRequest).start();
 
 // Create a graph request asking for user information with a callback to handle the response.
 const infoRequest = new GraphRequest(
   '/me',
   null,
-  this._responseInfoCallback,
+  //this._responseInfoCallback,
 );
 // Start the graph request.
-// new GraphRequestManager().addRequest(infoRequest).start();
+new GraphRequestManager().addRequest(infoRequest).start();
 
 class LoginButtonFB extends React.Component {
+  checkStatus() {
+    console.dir(AccessToken.getCurrentAccessToken());
+  }
   render() {
     return (
       <View>
@@ -42,6 +44,7 @@ class LoginButtonFB extends React.Component {
           publishPermissions={["publish_actions"]}
           onLoginFinished={
             (error, result) => {
+              this.checkStatus();
               if (!result) {
                 alert("no result");
               } else if (error) {
