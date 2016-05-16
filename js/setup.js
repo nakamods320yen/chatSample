@@ -22,6 +22,7 @@ var {applyMiddleware, createStore, connect} = require('redux');
 
 function setup(): React.Component {
   FacebookSDK.init();
+
   class Root extends React.Component {
     constructor() {
       super();
@@ -30,9 +31,15 @@ function setup(): React.Component {
         // dataSource: new ListView.DataSource({
         //   rowHasChanged: (row1, row2) => row1 !== row2,
         // })
+        userID: '',
         store: configureStore(() => this.setState({isLoading: false})),
         // store: {}
       };
+      FacebookSDK.login((res) => {
+        console.dir(res); // accessToken, expiresIn, userID
+        this.setState({userID: res.authResponse.userID});
+        console.dir(this.state);
+      }, {});
       //this.itemsRef = new Firebase("https://fiery-torch-404.firebaseio.com/items");
     }
     render() {

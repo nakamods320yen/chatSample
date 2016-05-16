@@ -93,11 +93,13 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
    }
    render() {
      console.dir(FacebookSDK.getAuthResponse());
+     var fb = FacebookSDK.getAuthResponse();
+     if(fb) var userID = fb.userID;
      return (
        <View style={styles.container}>
          <StatusBar title="Chat Sample" />
          <LoginButtonFB />
-         <ProfilePicture userID={this.props.userID} size={18} />
+         <ProfilePicture userID={userID} size={18} />
          <ListView
            dataSource={this.state.dataSource}
            renderRow={this._renderItem.bind(this)}
