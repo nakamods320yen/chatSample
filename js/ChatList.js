@@ -27,6 +27,21 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
          rowHasChanged: (row1, row2) => row1 !== row2,
        })
      };
+
+     console.dir(FacebookSDK.getAuthResponse());
+     var fb = FacebookSDK.getAuthResponse();
+     if(fb) {
+       var userID = fb.userID;
+       this.setState({userID: userID});
+     } else {
+       FacebookSDK.login((res) => {
+         console.dir(res); // accessToken, expiresIn, userID
+         this.setState({userID: res.authResponse.userID});
+         console.dir(this.state);
+       }, {});
+     }
+
+     console.dir(this);
      this.itemsRef = new Firebase("https://fiery-torch-404.firebaseio.com/items");
    }
    listenForItems(itemsRef) {
@@ -92,9 +107,13 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
      this.tmpText = text;
    }
    render() {
-     console.dir(FacebookSDK.getAuthResponse());
-     var fb = FacebookSDK.getAuthResponse();
-     if(fb) var userID = fb.userID;
+    //  console.dir(FacebookSDK.getAuthResponse());
+    //  var fb = FacebookSDK.getAuthResponse();
+    //  if(fb) var userID = fb.userID;
+    //  this.setState({userID: userID});
+    //  console.dir(this);
+    var userID = this.state.userID || '';
+
      return (
        <View style={styles.container}>
          <StatusBar title="Chat Sample" />

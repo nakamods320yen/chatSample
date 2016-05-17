@@ -35,6 +35,7 @@ function setup(): React.Component {
         store: configureStore(() => this.setState({isLoading: false})),
         // store: {}
       };
+      console.log('Root constructor');
       FacebookSDK.login((res) => {
         console.dir(res); // accessToken, expiresIn, userID
         this.setState({userID: res.authResponse.userID});
