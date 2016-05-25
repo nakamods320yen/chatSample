@@ -132,7 +132,6 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
      return (
        <View style={styles.container}>
          <StatusBar title="Chat Sample" />
-         <LoginButtonFB />
          <ProfilePicture userID={userID} size={18} />
          <ListView
            dataSource={this.state.dataSource}
