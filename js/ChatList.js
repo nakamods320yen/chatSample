@@ -34,11 +34,11 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
        var userID = fb.userID;
        this.setState({userID: userID});
      } else {
-       FacebookSDK.login((res) => {
-         console.dir(res); // accessToken, expiresIn, userID
-         this.setState({userID: res.authResponse.userID});
-         console.dir(this.state);
-       }, {});
+      //  FacebookSDK.login((res) => {
+      //    console.dir(res); // accessToken, expiresIn, userID
+      //    this.setState({userID: res.authResponse.userID});
+      //    console.dir(this.state);
+      //  }, {});
      }
 
      console.dir(this);
@@ -100,8 +100,23 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
    }
    _onSubmitEditing(a, b) {
      console.log('onSubmitEditing');
+     console.dir(this.state);
      console.dir(this.tmpText);
-     this.itemsRef.push({ title: this.tmpText, post_time: Firebase.ServerValue.TIMESTAMP })
+
+     var userID = this.state.userID;
+     if(!userID) {
+       console.dir(FacebookSDK.getAuthResponse());
+       var fb = FacebookSDK.getAuthResponse();
+       if(fb) {
+         var userID = fb.userID;
+         this.setState({userID: userID});
+       }
+     }
+     this.itemsRef.push({
+       title: this.tmpText,
+       post_time: Firebase.ServerValue.TIMESTAMP,
+       userID: userID
+     })
    }
    _onChangeText(text) {
      this.tmpText = text;
