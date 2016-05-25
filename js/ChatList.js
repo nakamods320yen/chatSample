@@ -9,7 +9,6 @@ const ActionButton = require('../components/ActionButton');
 const ListItem = require('../components/ListItem');
 const TextField = require('../components/TextField');
 const LoginButtonFB = require('./login/LoginButtonFB');
-var ProfilePicture = require('./common/ProfilePicture');
 var FacebookSDK = require('./FacebookSDK');
 
 // const FBSDK = require('react-native-fbsdk');
@@ -52,6 +51,7 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
          items.push({
            title: child.val().title,
            post_time: child.val().post_time,
+           userID: child.val().userID,
            _key: child.key()
          });
        });
@@ -132,7 +132,6 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
      return (
        <View style={styles.container}>
          <StatusBar title="Chat Sample" />
-         <ProfilePicture userID={userID} size={18} />
          <ListView
            dataSource={this.state.dataSource}
            renderRow={this._renderItem.bind(this)}
