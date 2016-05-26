@@ -11,9 +11,13 @@ class ListItem extends React.Component {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
         <View style={styles.li}>
-          <ProfilePicture userID={this.props.item.userID} size={18} />
-          <Text style={styles.liPostTime}>{post_time_str}</Text>
-          <Text style={styles.liText}>{this.props.item.title}</Text>
+          <View style={styles.liprofile}>
+            <ProfilePicture userID={this.props.item.userID} size={28} />
+          </View>
+          <View style={styles.lipost}>
+            <Text style={styles.liPostTime}>{post_time_str}</Text>
+            <Text style={styles.liText}>{this.props.item.title}</Text>
+          </View>
         </View>
       </TouchableHighlight>
     );
