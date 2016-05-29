@@ -26,7 +26,7 @@ var styles = StyleSheet.create({
     width: 50,
   },
   lipost: {
-
+    width: 300,
   },
   liContainer: {
     flex: 2,
