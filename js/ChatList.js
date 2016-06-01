@@ -10,6 +10,11 @@ const ListItem = require('../components/ListItem');
 const TextField = require('../components/TextField');
 const LoginButtonFB = require('./login/LoginButtonFB');
 var FacebookSDK = require('./FacebookSDK');
+import type {State as User} from './reducers/user';
+
+type Props = {
+  user: User;
+};
 
 // const FBSDK = require('react-native-fbsdk');
 // const {
@@ -28,6 +33,7 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
      };
 
      console.dir(FacebookSDK.getAuthResponse());
+     console.dir(this.props);
      var fb = FacebookSDK.getAuthResponse();
      if(fb) {
        var userID = fb.userID;
