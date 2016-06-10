@@ -127,7 +127,8 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
      });
    }
    componentDidUpdate() {
-     this._listView.scrollTo(this._scrollToBottomY);
+     console.log('_scrollToBottomY: %o', this._scrollToBottomY);
+     this._listView.scrollTo({y: this._scrollToBottomY+80-600});
    }
    _onChangeText(text) {
      this.tmpText = text;
@@ -144,8 +145,8 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
          <StatusBar title="Chat Sample" />
          <ListView
             ref={ (listview) => { this._listView = listview; } }
-            onContentSizeChange={(newSize)=>{
-              this._scrollToBottomY = newSize;
+            onContentSizeChange={(newWidth, newHeight)=>{
+              this._scrollToBottomY = newHeight;
             }}
             dataSource={this.state.dataSource}
             renderRow={this._renderItem.bind(this)}
