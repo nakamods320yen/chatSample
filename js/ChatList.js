@@ -31,6 +31,8 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
          rowHasChanged: (row1, row2) => row1 !== row2,
        })
      };
+     var _listView: ListView;
+     var _scrollToBottomY;
 
      console.dir(FacebookSDK.getAuthResponse());
      console.dir(this.props);
@@ -122,7 +124,10 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
        title: this.tmpText,
        post_time: Firebase.ServerValue.TIMESTAMP,
        userID: userID
-     })
+     });
+   }
+   componentDidUpdate() {
+     this._listView.scrollTo(this._scrollToBottomY);
    }
    _onChangeText(text) {
      this.tmpText = text;
@@ -134,15 +139,18 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
     //  this.setState({userID: userID});
     //  console.dir(this);
     var userID = this.state.userID || '';
-
      return (
        <View style={styles.container}>
          <StatusBar title="Chat Sample" />
          <ListView
-           dataSource={this.state.dataSource}
-           renderRow={this._renderItem.bind(this)}
-           style={styles.listview}
-           enableEmptySections={true}/>
+            ref={ (listview) => { this._listView = listview; } }
+            onContentSizeChange={(newSize)=>{
+              this._scrollToBottomY = newSize;
+            }}
+            dataSource={this.state.dataSource}
+            renderRow={this._renderItem.bind(this)}
+            style={styles.listview}
+            enableEmptySections={true}/>
          <TextField
            onSubmitEditing={this._onSubmitEditing.bind(this)}
            onChangeText={this._onChangeText.bind(this)}/>
