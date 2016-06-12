@@ -21,7 +21,7 @@ type Props = {
 //   LoginButton,
 // } = FBSDK;
 const styles = require('../js/styles.js');
-const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
+const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS, Dimensions } = React;
 
  class ChatList extends React.Component {
    constructor(props) {
@@ -128,7 +128,9 @@ const { AppRegistry, StyleSheet, Text, View, ListView, AlertIOS } = React;
    }
    componentDidUpdate() {
      console.log('_scrollToBottomY: %o', this._scrollToBottomY);
-     this._listView.scrollTo({y: this._scrollToBottomY+80-600});
+     var {height, width} = Dimensions.get('window');
+     console.log('device height: %o', height);
+     this._listView.scrollTo({y: this._scrollToBottomY+147-height});
    }
    _onChangeText(text) {
      this.tmpText = text;
